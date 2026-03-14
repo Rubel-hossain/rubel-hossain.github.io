@@ -3,6 +3,8 @@
 # Site Settings
 title: My Resume
 url: 'https://rubel-hossain.github.io'
+recepies_page_heading: "Recipes"
+recepies_page_subtitle: "A collection of recipes"
 
 #change it according to your repository name
 # disabling since we are using a custom domain
