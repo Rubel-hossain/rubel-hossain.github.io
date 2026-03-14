@@ -14,22 +14,5 @@ $resume-order: 1;
 $sidebar-order: 2;
 {% endif %}
 
-@use "skins/{{ site.theme_skin | default: 'blue' }}" as skin;
-@use "base" with (
-  $theme-color: skin.$theme-color,
-  $text-color: skin.$text-color,
-  $text-color-secondary: skin.$text-color-secondary,
-  $text-grey: skin.$text-grey,
-  $divider: skin.$divider,
-  $lighter-grey: skin.$lighter-grey,
-  $darker-grey: skin.$darker-grey,
-  $smoky-white: skin.$smoky-white,
-  $heart: skin.$heart,
-  $resume-order: $resume-order,
-  $sidebar-order: $sidebar-order
-);
-@use "responsive";
-@use "utilities";
-@use "print" with (
-  $theme-color: skin.$theme-color
-);
+@import "skins/{{ site.theme_skin | default: 'blue' }}"; // skin
+@import "default"; // main partials
