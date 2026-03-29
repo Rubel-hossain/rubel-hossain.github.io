@@ -46,13 +46,12 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        {% assign blog_posts = site.blog | sort: "date" | reverse %}
-        {% assign current_page = page.page_number | default: 1 | plus: 0 %}
-        {% assign per_page = site.blog_paginate | default: 3 | plus: 0 %}
-        {% assign total_pages = page.total_pages | default: 1 | plus: 0 %}
-        {% assign offset = current_page | minus: 1 | times: per_page %}
-        {% assign paged_posts = blog_posts | slice: offset, per_page %}
-        {% for post in paged_posts %}
+        {% assign blog_posts = paginator.posts | default: site.blog | sort: "date" | reverse %}
+        {% assign current_page = paginator.page | default: 1 | plus: 0 %}
+        {% assign total_pages = paginator.total_pages | default: 1 | plus: 0 %}
+        {% assign next_page_path = paginator.next_page_path %}
+        {% assign previous_page_path = paginator.previous_page_path %}
+        {% for post in blog_posts %}
         <article class="post-preview">
           <a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">
             <h2 class="post-title">{{ post.title }}</h2>
@@ -70,19 +69,11 @@
         {% endfor %}
         {% if total_pages > 1 %}
         <div class="clearfix mt-5">
-          {% if current_page > 1 %}
-          {% assign newer_page = current_page | minus: 1 %}
-          {% if newer_page == 1 %}
-          {% assign newer_url = '/blog/' %}
-          {% else %}
-          {% capture newer_url %}/blog/page/{{ newer_page }}/{% endcapture %}
+          {% if previous_page_path %}
+          <a class="btn btn-primary float-left" href="{{ previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
           {% endif %}
-          <a class="btn btn-primary float-left" href="{{ newer_url | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
-          {% endif %}
-          {% if current_page < total_pages %}
-          {% assign older_page = current_page | plus: 1 %}
-          {% capture older_url %}/blog/page/{{ older_page }}/{% endcapture %}
-          <a class="btn btn-primary float-right" href="{{ older_url | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
+          {% if next_page_path %}
+          <a class="btn btn-primary float-right" href="{{ next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
           {% endif %}
         </div>
         <ul class="pagination justify-content-center mt-4">

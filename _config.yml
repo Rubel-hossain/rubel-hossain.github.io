@@ -11,8 +11,10 @@ recepies_page_subtitle: "A collection of recipes"
 #baseurl: '/online-cv' 
 
 description: A beautiful Jekyll theme for creating resume
-blog_paginate: 3
+blog_paginate: 20
 recepies_paginate: 3
+plugins:
+  - jekyll-paginate-v2
 collections:
   blog:
     output: true
@@ -42,9 +44,20 @@ analytics: UA-83979019-1
 sass:
   sass_dir: _sass
   style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+  silence_deprecations:
+    - import
+    - global-builtin
+    - color-functions
 
 # Build settings
 compress-site: yes
+pagination:
+  enabled: true
+  collection: blog
+  per_page: 20
+  permalink: /page/:num/
+  sort_field: date
+  sort_reverse: true
 
 encoding: "utf-8"
 compress_html: # - http://jch.penibelst.de/

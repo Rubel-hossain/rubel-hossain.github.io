@@ -1,7 +1,34 @@
 /* Extra small devices (phones, less than 768px) */
 @media (max-width: 767px) {
   body {
-    padding: 0;
+    padding: 74px 0 0;
+  }
+
+  #mainNav .container {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 0.45rem 0;
+  }
+
+  #mainNav .navbar-toggler {
+    display: inline-block;
+    margin-top: 0.4rem;
+  }
+
+  #mainNav .navbar-collapse {
+    display: block;
+    width: 100%;
+  }
+
+  #mainNav .navbar-nav {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem;
+  }
+
+  #mainNav .nav-link {
+    padding: 0.35rem 0;
   }
 
   .sidebar-wrapper {
